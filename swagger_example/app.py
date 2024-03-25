@@ -1,11 +1,9 @@
-import os
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask import json
 from werkzeug.exceptions import HTTPException
 from flask import send_from_directory
 
-PORT = 5000
 
 myApp = Flask(__name__)
 
@@ -15,7 +13,7 @@ tasks = [{'name': 'Laundry', 'description': 'Do the laundry this weekend'},
          {'name': 'Pay bills', 'description': 'Pay the electricity and water bill'}]
 
 
-@myApp.route('/swaggerfile_8')
+@myApp.route('/docs')
 def send_swagger():
     return send_from_directory('.', 'swagger_config.json')
 
@@ -79,4 +77,4 @@ def handle_exception(e):
 
 if __name__ == '__main__':
     CORS = CORS(myApp)
-    myApp.run(port=PORT, debug=False)
+    myApp.run(port=8000, debug=True)
